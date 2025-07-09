@@ -15,10 +15,18 @@ function LoginPage() {
         setError("");
 
         try {
-            const response = await axios.post("http://localhost:8080/api/auth/login", {
-                username,
-                password,
-            });
+            const response = await axios.post(
+                "http://localhost:8080/api/auth/login",
+                {
+                    username,
+                    password
+                },
+                {
+                    withCredentials: true // 🔥 CORS cookie bazlıysa bu şart!
+                }
+            );
+
+
 
             // Token varsa login başarılı say
             if (response.data.token) {

@@ -31,6 +31,20 @@ public class DataInitializer {
             } else {
                 System.out.println("ℹ️ Admin kullanıcısı zaten mevcut.");
             }
+
+            // Manuel kullanıcı ekle
+            if (usersRepository.findByUsername("testuser").isEmpty()) {
+                Users user = new Users();
+                user.setUsername("testuser");
+                user.setPassword(passwordEncoder.encode("test123"));
+                user.setEmail("testuser@example.com");
+                user.setName("Test");
+                user.setSurname("User");
+                usersRepository.save(user);
+                System.out.println("✅ Test kullanıcısı oluşturuldu: testuser / test123");
+            } else {
+                System.out.println("ℹ️ Test kullanıcısı zaten mevcut.");
+            }
         };
     }
 }
